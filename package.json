@@ -1,15 +1,19 @@
 {
   "name": "run-task",
   "version": "0.0.22",
-  "description": "Write functions instead of shell scripts",
+  "description": "Simple-as-possible task runner",
   "main": "index.js",
   "engines": {
     "node": ">=4.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "standard"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "pre-commit": "^1.1.2",
+    "standard": "^6.0.8"
+  }
 }

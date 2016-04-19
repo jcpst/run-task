@@ -11,7 +11,7 @@ function log (text) {
 function tasky (tasks) {
   const tasksToRun = process.argv.slice(2)
   const availableTasks = Object.keys(tasks)
-  
+
   if (tasksToRun.length === 0) {
     console.log(colors.grey('Available tasks:'))
     availableTasks.forEach((task) => {
@@ -21,10 +21,10 @@ function tasky (tasks) {
   }
 
   tasksToRun.forEach((task) => {
-    const taskExists = availableTasks.find((x) => x === task) ? true : false
+    const taskExists = availableTasks.find((x) => x === task)
     if (taskExists) {
       log(colors.green(task))
-      tasks[task]()  
+      tasks[task]()
     } else {
       log(colors.red(`'${task}' is not defined`))
     }
