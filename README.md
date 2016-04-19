@@ -10,7 +10,7 @@ also a list of available tasks:
 ```javascript
 // filename: run.js
 
-require('tasky')({
+require('run-task')({
   taskOne,
   taskTwo
 })
