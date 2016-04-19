@@ -1,6 +1,6 @@
 {
   "name": "run-task",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "description": "Write functions instead of shell scripts",
   "main": "index.js",
   "engines": {
