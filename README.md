@@ -10,10 +10,10 @@ javascript task runners. Requires node v4 or newer.
 `run-task` returns a function that has an object parameter, with the keys being
 tasks and the values being functions for those tasks.
 
-Execute using `node [script] [taskname]`:
+Execute using `node [script] [tasknames]`:
 
 ```shell
-$ node run foobar
+$ node run bar foobar ...
 ```
 
 If you don't provide a task argument, it will display the available tasks
