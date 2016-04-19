@@ -31,8 +31,7 @@ If you don't provide a task argument, it will display the available tasks
 // filename: run.js
 
 require('run-task')({
-  taskOne,
-  taskTwo
+  bar, foobar
 })
 
 function privateFoo () {
