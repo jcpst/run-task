@@ -1,5 +1,5 @@
-tasky
-=====
+run-task
+========
 
 Usage:
 
