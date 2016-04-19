@@ -1,21 +1,16 @@
 'use strict'
 
-const path = require('path')
 const colors = require('./lib/colors')
+const log = require('./lib/log')
 
-function log (text) {
-  const filename = path.basename(process.argv[1])
-  console.log(colors.grey(`[${filename}]`), text)
-}
-
-function tasky (tasks) {
+function run (tasks) {
   const tasksToRun = process.argv.slice(2)
   const availableTasks = Object.keys(tasks)
 
   if (tasksToRun.length === 0) {
-    console.log(colors.grey('Available tasks:'))
+    log(colors.underline('Available tasks:'))
     availableTasks.forEach((task) => {
-      console.log('  ' + colors.grey(task))
+      log('  ' + task)
     })
     return
   }
@@ -31,4 +26,5 @@ function tasky (tasks) {
   })
 }
 
-module.exports = tasky
+module.exports = run
+
