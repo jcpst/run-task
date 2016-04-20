@@ -22,3 +22,10 @@ runs some task\n`)
   assert.equal(stderr, '')
 })
 
+exec('node test/run zzz', function (err, stdout, stderr) {
+  assert.equal(err, null)
+  assert.equal(stdout, `\
+\u001b[90m[run]\u001b[39m \u001b[31m\'zzz\' is not defined\u001b[39m\n`)
+  assert.equal(stderr, '')
+})
+
