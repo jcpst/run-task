@@ -23,7 +23,7 @@ functions from the command line.
 
 You can get a lot done with [shelljs][1], which gives you cross-platform *nix 
 tools. The great thing is you can use any modules you want with `run-task`.
-There is also world of excellent node modules that can help you get the
+There is a world of excellent node modules that can help you get the
 functionality you need. Checkout a curated list at [awesome-nodejs][2].
 
 ### Suggestions
