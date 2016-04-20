@@ -9,14 +9,12 @@ function run (tasks) {
 
   if (tasksToRun.length === 0) {
     log(colors.underline('Available tasks:'))
-    availableTasks.forEach((task) => {
-      log('  ' + task)
-    })
+    availableTasks.forEach((task) => log(task))
     return
   }
 
   tasksToRun.forEach((task) => {
-    const taskExists = availableTasks.find((x) => x === task)
+    let taskExists = availableTasks.find((x) => x === task)
     if (taskExists) {
       log(colors.green(task))
       tasks[task]()
