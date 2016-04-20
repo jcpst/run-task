@@ -11,15 +11,15 @@ const log = require('./lib/log')
  */
 function run (tasks) {
   const tasksToRun = process.argv.slice(2)
-  const availableTasks = Object.keys(tasks)
+  const allTasks = Object.keys(tasks)
 
   if (tasksToRun.length === 0) {
     log(colors.underline('Available tasks:'))
-    availableTasks.forEach((task) => log(task))
+    allTasks.forEach((task) => log(task))
   }
 
   tasksToRun.forEach((task) => {
-    let taskExists = availableTasks.find((x) => x === task)
+    let taskExists = allTasks.find((x) => x === task)
     if (taskExists) {
       log(colors.green(task))
       tasks[task]()
@@ -30,4 +30,3 @@ function run (tasks) {
 }
 
 module.exports = run
-
