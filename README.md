@@ -7,8 +7,8 @@ javascript task runners. Requires node v4 or newer.
 
 ## Usage
 
-`run-task` returns a function that has an object parameter, with the keys being
-tasks and the values being functions for those tasks.
+`run-task` returns a function that takes an object as an argument. The keys are
+the names of tasks and the values are functions for those tasks.
 
 Execute using `node [script] [tasknames]`:
 
@@ -16,16 +16,17 @@ Execute using `node [script] [tasknames]`:
 $ node run bar foobar ...
 ```
 
-If you don't provide a task argument, it will display the available tasks
+> If you don't provide a task argument, it will display the available tasks
 
 ### Suggestions
 
-* name your functions whatever you want the task names to be, that way you can 
-  take advantage of the [property shorthand][1].
-* name the file containing the tasks `run.js`, that way you can call 
-  `node run [task]`, which will feel familiar to those used to `npm run [task]`
+* Name your functions whatever you want the task names to be, that way you can 
+  take advantage of the [property shorthand][1]. The object parameters are then
+  just a list of exported functions.
+* Name the file containing the tasks `run.js`, so that tasks are called like 
+  `node run [task]`.
 
-### Example
+### Examples
 
 ```javascript
 // filename: run.js
