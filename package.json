@@ -7,10 +7,23 @@
     "node": ">=4.0"
   },
   "scripts": {
-    "test": "standard"
+    "pretest": "standard",
+    "test": "node test/test"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "build",
+    "cli",
+    "make",
+    "run",
+    "run-script",
+    "runner",
+    "script",
+    "task",
+    "task-runner"
+  ],
+  "author": "Joseph Post <joe@jcpst.com> (http://jcpst.com)",
+  "repository": "jcpst/run-task",
+  "bugs": "https://github.com/jcpst/run-task/issues",
   "license": "ISC",
   "devDependencies": {
     "pre-commit": "^1.1.2",
