@@ -25,7 +25,7 @@ runTest('node test/run', `\
 [run] Usage: node index
 [run] Available tasks:
 [run]   some - a task that can be run
-[run]   somethingElse - undefined
+[run]   somethingElse
 `)
 
 runTest('node test/run some', `\

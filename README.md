@@ -86,6 +86,17 @@ tasks({
 $ node run foobar
 ```
 
+* You can add a description by attaching a `description` property to the
+function.
+
+```javascript
+function bar () {
+  console.log('bar')
+}
+
+bar.description = 'a task that can be run'
+```
+
 * You can pass in more than one task.
 
 ```shell
@@ -97,7 +108,7 @@ $ node run bar foobar
 ```shell
 $ node run
 [run] Available tasks:
-[run] bar
+[run] bar - a task that can be run
 [run] foobar
 ```
 

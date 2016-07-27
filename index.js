@@ -19,8 +19,10 @@ function run (tasks) {
     log(colors.green(`Usage: node ${filename}`))
     log(colors.underline('Available tasks:'))
     allTasks.forEach(task => {
-      const description = colors.grey(tasks[task].description)
-      log(`  ${task} - ${description}`)
+      const description = tasks[task].description
+        ? ' - ' + colors.grey(tasks[task].description)
+        : ''
+      log('  ' + task + description)
     })
   }
 
