@@ -7,52 +7,33 @@ const runTask = require('../index')
 
 assert.equal(typeof runTask, 'function')
 
-exec('node test/run', function (err, stdout, stderr) {
-  if (err) throw err
+function runTest (command, expectedOutput) {
+  exec(command, (err, stdout, stderr) => {
+    if (err) throw err
 
-  // Arrange
-  const output = strip(stdout)
-  const expectedResult = `\
+    // Arrange
+    const output = strip(stdout)
+
+    // Act
+    assert.equal(err, null)
+    assert.equal(output, expectedOutput)
+    assert.equal(stderr, '')
+  })
+}
+
+runTest('node test/run', `\
 [run] Usage: node index
 [run] Available tasks:
 [run]   some - a task that can be run
 [run]   somethingElse - undefined
-`
+`)
 
-  // Act
-  assert.equal(err, null)
-  assert.equal(output, expectedResult)
-  assert.equal(stderr, '')
-})
-
-exec('node test/run some', function (err, stdout, stderr) {
-  if (err) throw err
-
-  // Arrange
-  const output = strip(stdout)
-  const expectedResult = `\
+runTest('node test/run some', `\
 [run] some
 runs some task
-`
+`)
 
-  // Act
-  assert.equal(err, null)
-  assert.equal(output, expectedResult)
-  assert.equal(stderr, '')
-})
-
-exec('node test/run zzz', function (err, stdout, stderr) {
-  if (err) throw err
-
-  // Arrange
-  const output = strip(stdout)
-  const expectedResult = `\
+runTest('node test/run zzz', `\
 [run] 'zzz' is not defined
-`
-
-  // Act
-  assert.equal(err, null)
-  assert.equal(output, expectedResult)
-  assert.equal(stderr, '')
-})
+`)
 
