@@ -1,6 +1,5 @@
 'use strict'
 
-const path = require('path')
 const colors = require('./lib/colors')
 const log = require('./lib/log')
 
@@ -11,12 +10,10 @@ const log = require('./lib/log')
  * @param tasks {object}
  */
 function run (tasks) {
-  const filename = path.basename(__filename, '.js')
   const tasksToRun = process.argv.slice(2)
   const allTasks = Object.keys(tasks)
 
   if (tasksToRun.length === 0) {
-    log(colors.green(`Usage: node ${filename}`))
     log(colors.underline('Available tasks:'))
     allTasks.forEach(task => {
       const description = tasks[task].description
@@ -26,8 +23,8 @@ function run (tasks) {
     })
   }
 
-  tasksToRun.forEach((task) => {
-    let taskExists = allTasks.find(x => x === task)
+  tasksToRun.forEach(task => {
+    const taskExists = allTasks.find(x => x === task)
     if (taskExists) {
       log(colors.green(task))
       tasks[task]()
