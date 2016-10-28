@@ -1,6 +1,6 @@
 {
   "name": "run-task",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Simple-as-possible task runner",
   "main": "index.js",
   "engines": {
