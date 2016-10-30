@@ -1,9 +1,9 @@
 run-task
 ========
 
-A simple-as-possible cli task runner with no dependencies. For when you would 
-prefer to write code rather than shell scripts in `package.json`, but don't
-need the overhead of most other javascript task runners.
+A simple cli task runner. When you would prefer to write code rather than shell
+scripts in `package.json`, but would rather not spend a lot of time learning a
+build tool.
 
 Requires node v4 or newer.
 
@@ -86,15 +86,24 @@ tasks({
 $ node run foobar
 ```
 
-* You can add a description by attaching a `description` property to the
-function.
+* If you use JSDoc comments, it will pick up the description. You can also add
+  a description by attaching a `description` property to the function.
+
+```javascript
+/**
+ * This will show up as the task's description on stdout.
+ */
+function bar () {
+  console.log('bar')
+}
+```
 
 ```javascript
 function bar () {
   console.log('bar')
 }
 
-bar.description = 'a task that can be run'
+bar.description = 'This will show up as the task's description on stdout.'
 ```
 
 * You can pass in more than one task.
@@ -108,7 +117,7 @@ $ node run bar foobar
 ```shell
 $ node run
 [run] Available tasks:
-[run] bar - a task that can be run
+[run] bar - This will show up as the task's description on stdout.
 [run] foobar
 ```
 
