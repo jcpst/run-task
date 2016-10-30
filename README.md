@@ -103,7 +103,7 @@ function bar () {
   console.log('bar')
 }
 
-bar.description = 'This will show up as the task's description on stdout.'
+bar.description = "This will show up as the task's description on stdout."
 ```
 
 * You can pass in more than one task.
