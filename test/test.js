@@ -36,3 +36,11 @@ runTest('node test/run zzz', `\
 [run] 'zzz' is not defined
 `)
 
+runTest('node test/run some -q', `\
+runs some task
+`)
+
+runTest('node test/run some somethingElse -q', `\
+runs some task
+runs another task
+`)

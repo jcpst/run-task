@@ -10,8 +10,10 @@ const description = require('./lib/description')
  * @param tasks {object}
  */
 function run (tasks) {
-  const tasksToRun = process.argv.slice(2)
+  const args = process.argv.slice(2)
+  const tasksToRun = args.filter(arg => arg.substring(0, 1) !== '-')
   const allTasks = Object.keys(tasks)
+  const quietFlag = process.argv.find(arg => arg === '-q')
 
   if (tasksToRun.length === 0) {
     log(colors.underline('Available tasks:'))
@@ -26,10 +28,10 @@ function run (tasks) {
   tasksToRun.forEach(task => {
     const taskExists = allTasks.find(x => x === task)
     if (taskExists) {
-      log(colors.green(task))
+      !quietFlag && log(colors.green(task))
       tasks[task]()
     } else {
-      log(colors.red(`'${task}' is not defined`))
+      !quietFlag && log(colors.red(`'${task}' is not defined`))
     }
   })
 }

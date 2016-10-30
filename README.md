@@ -121,6 +121,13 @@ $ node run
 [run] foobar
 ```
 
+* You can also pass in a `-q` flag to silence the run-task logging.
+
+```shell
+$ node run bar -q
+bar
+```
+
 That's it. It just runs functions from the command line. There are no 
 assumptions on what kind of tasks you want to run.
 
