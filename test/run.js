@@ -6,6 +6,10 @@ function some () {
 
 some.description = 'a task that can be run'
 
+/**
+ * This is something else
+ * @param hm
+ */
 function somethingElse () {
   console.log('runs another task')
 }

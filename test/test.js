@@ -24,7 +24,7 @@ function runTest (command, expectedOutput) {
 runTest('node test/run', `\
 [run] Available tasks:
 [run]   some - a task that can be run
-[run]   somethingElse
+[run]   somethingElse - This is something else
 `)
 
 runTest('node test/run some', `\

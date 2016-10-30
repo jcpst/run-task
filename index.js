@@ -2,7 +2,7 @@
 
 const colors = require('./lib/colors')
 const log = require('./lib/log')
-
+const description = require('./lib/description')
 /**
  * Pass in all public tasks, then runs the tasks whose names
  * were passed in as arguments on the command line.
@@ -16,10 +16,10 @@ function run (tasks) {
   if (tasksToRun.length === 0) {
     log(colors.underline('Available tasks:'))
     allTasks.forEach(task => {
-      const description = tasks[task].description
-        ? ' - ' + colors.grey(tasks[task].description)
-        : ''
-      log('  ' + task + description)
+      const taskDescription = tasks[task].description
+        ? ' - ' + tasks[task].description
+        : ' -' + description().find(d => d.name === task).description
+      log('  ' + task + colors.grey(taskDescription))
     })
   }
 
