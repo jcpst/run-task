@@ -38,48 +38,6 @@ tasks({
 })
 ```
 
-Or if you want split your functions into separate files...
-
-```javascript
-// tasks/foo.js
-
-function foo () {
-  console.log('foo')
-}
-
-module.exports = foo
-```
-
-```javascript
-// tasks/foobar.js
-
-const foo = require('./foo')
-
-function bar () {
-  console.log('bar')
-}
-
-function foobar () {
-  foo()
-  bar()
-}
-
-module.exports = foobar
-```
-
-```javascript
-// run.js
-
-const tasks = require('run-task')
-const foo = require('./tasks/foo')
-const foobar = require('./tasks/foobar')
-
-tasks({
-  bar,
-  foobar
-})
-```
-
 * Execute using `node [script] [task]`.
 
 ```shell
