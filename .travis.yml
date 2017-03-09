@@ -1,7 +1,7 @@
 language: node_js
 node_js:
-  - 5
-  - 4
+  - lts/boron
+  - lts/argon
 cache:
   directories:
     - node_modules
