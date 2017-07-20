@@ -4,12 +4,20 @@ const assert = require('assert')
 const exec = require('child_process').exec
 const strip = require('strip-ansi')
 const runTask = require('../index')
+const log = require('../lib/log')
+
+require('../lib/colors')
 
 assert.equal(typeof runTask, 'function')
 
-function runTest (command, expectedOutput) {
+function runTest(description, command, expectedOutput) {
   exec(command, (err, stdout, stderr) => {
-    if (err) throw err
+    log(description.green)
+
+    if (err) {
+      log(stderr)
+      throw err
+    }
 
     // Arrange
     const output = strip(stdout)
@@ -21,26 +29,47 @@ function runTest (command, expectedOutput) {
   })
 }
 
-runTest('node test/run', `\
+runTest(
+  'List available tasks when no task argument is provided.',
+  'node test/run',
+  `\
 [run] Available tasks:
-[run]   some - a task that can be run
+[run]   some          - a task that can be run
 [run]   somethingElse - This is something else
-`)
+[run]   anotherThing
+`
+)
 
-runTest('node test/run some', `\
+runTest(
+  'Run the task when provided the task argument.',
+  'node test/run some',
+  `\
 [run] some
 runs some task
-`)
+`
+)
 
-runTest('node test/run zzz', `\
+runTest(
+  'Friendly error message when running an undefined task.',
+  'node test/run zzz',
+  `\
 [run] 'zzz' is not defined
-`)
+`
+)
 
-runTest('node test/run some -q', `\
+runTest(
+  'No console loggin by run-task when passed the -q flag.',
+  'node test/run some -q',
+  `\
 runs some task
-`)
+`
+)
 
-runTest('node test/run some somethingElse -q', `\
+runTest(
+  'Runs multiple tasks that are passed in as arguments.',
+  'node test/run some somethingElse -q',
+  `\
 runs some task
 runs another task
-`)
+`
+)
