@@ -3,6 +3,7 @@
 require('./lib/colors')
 const log = require('./lib/log')
 const description = require('./lib/description')
+
 /**
  * Pass in all public tasks, then runs the tasks whose names
  * were passed in as arguments on the command line.
@@ -19,22 +20,39 @@ function run(tasks) {
   ).length
   const pad = length => ' '.repeat(firstColumnWidth - length)
 
+  function formatTask(tasks, task, depth) {
+    const taskDescription =
+      tasks[task].description ||
+      ((description().find(d => d.name === task) || {}).description || '')
+        .trim()
+    const taskDescriptionFormat = taskDescription
+      ? pad(task.length) + ' - ' + taskDescription.grey
+      : ''
+
+    log('  '.repeat(depth || 1) + task + taskDescriptionFormat)
+  }
+
   if (tasksToRun.length === 0) {
     log('Available tasks:'.underline)
 
-    allTasks.forEach(task => {
-      const taskDescription =
-        tasks[task].description ||
-        ((description().find(d => d.name === task) || {}).description || '')
-          .trim()
-
-      log(
-        '  ' +
-          task +
-          (taskDescription
-            ? pad(task.length) + ' - ' + taskDescription.grey
-            : '')
-      )
+    allTasks.forEach(taskKey => {
+      const task = tasks[taskKey]
+      if (typeof task === 'function') {
+        formatTask(tasks, taskKey)
+      } else if (
+        !Array.isArray(task) &&
+        task !== null &&
+        typeof task === 'object'
+      ) {
+        // TODO: Be able to print the descriptions for sub-tasks.
+        // TODO: Be able to run sub-tasks like: `node run build:dev`.
+        // TODO: Run a default task if it is defined.
+        // TODO: Create arbitrarily deep sub tasks.
+        formatTask(tasks, taskKey)
+        Object.keys(task).forEach(t => {
+          formatTask(task, t, 2)
+        })
+      }
     })
   }
 
